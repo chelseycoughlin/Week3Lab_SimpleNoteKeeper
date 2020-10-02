@@ -74,7 +74,7 @@ public class NoteServlet extends HttpServlet {
         String title = request.getParameter("title");
         String note = request.getParameter("note");
 
-        /*
+        
         if (title == null || title.equals("") ||
                 note == null || note.equals("")) {
             request.setAttribute("title", title);
@@ -83,7 +83,7 @@ public class NoteServlet extends HttpServlet {
             
             return;
         }
-         */
+         
         Notes notes = new Notes(title, note);
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path, false)));
         if (request.getParameter("save") != null) {
