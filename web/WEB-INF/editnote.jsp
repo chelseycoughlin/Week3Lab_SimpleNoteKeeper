@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Notes</title>
+        <title>Edit Notess</title>
     </head>
     <body>
         <h1>Simple Notes Keeper</h1>
