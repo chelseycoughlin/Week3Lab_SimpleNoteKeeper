@@ -15,11 +15,11 @@
         <h1>Simple Notes Keeper</h1>
         <h3>View Notes</h3><br>
         <form method="post" action="note">
-        <label for="title">Title: </label>
+        <label>Title: </label>
         ${notes.title} 
         <br>
         <br>
-        <label for="textarea">Contents: </label>
+        <label>Contents: </label>
         ${notes.text}
         <br>
         <br>

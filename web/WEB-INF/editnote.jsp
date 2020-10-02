@@ -21,7 +21,7 @@
         <br>
         <br>
         <label for="textarea">Contents: </label>
-        <textarea name="note" rows="6" cols="30" value="${notes.text}"></textarea>
+        <textarea name="note" rows="6" cols="30" value="">${notes.text}</textarea>
         <br>
         <br>
         <input type="submit" value="Save" name="save">
