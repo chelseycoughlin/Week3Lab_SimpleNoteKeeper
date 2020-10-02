@@ -6,7 +6,13 @@
 package servlets;
 
 import domain.Notes;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,30 +28,64 @@ public class NoteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String edit = request.getParameter("edit");
+            
+        if(edit != null)
+        {
+            request.setAttribute("testing", "success");
+        }
+        
         getServletContext().getRequestDispatcher("/WEB-INF/editnote.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String path = getServletContext().getRealPath("/WEB-INF/note.txt");
+        
         String title = request.getParameter("title");
         String note = request.getParameter("note");
        
-        
+        /*
         if (title == null || title.equals("") ||
                 note == null || note.equals("")) {
             request.setAttribute("title", title);
             request.setAttribute("notes", note);
-            request.setAttribute("error", "both");
             getServletContext().getRequestDispatcher("/WEB-INF/editnote.jsp").forward(request, response);
             
             return;
         }
+        */
+        Notes notes2 = new Notes(title, note);
+                Notes notes = new Notes(title, note);
+                PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path, false)));
+                BufferedReader br = new BufferedReader(new FileReader(new File(path)));
+        if (request.getParameter("save") != null)
+        {
+         
 
-        // construct person object
-        Notes notes = new Notes(title, note);
+         //pass person object to the JSP
+        pw.print(notes2.getTitle());
+        pw.print('\n');
+        pw.print(notes2.getText());
+        pw.close();
+        pw.flush();
         
+        }
+        
+        else if (request.getParameter("edit") != null){
+
+            title = br.readLine();
+            note = br.readLine();
+            System.out.println("I AM READING");
+            br.close();
+        
+        notes.setTitle(title);
+        notes.setText(note);
         // pass person object to the JSP
+        }
         request.setAttribute("notes", notes);
         
         getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp").forward(request, response);   
