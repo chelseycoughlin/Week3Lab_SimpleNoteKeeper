@@ -17,11 +17,11 @@
         <h3>Edit Notes</h3><br>
         <form method="post" action="note">
         <label for="title">Title: </label>
-        <input type="text" name="title" value="${title}">
+        <input type="text" name="title" value="${notes.title}">
         <br>
         <br>
         <label for="textarea">Contents: </label>
-        <textarea name="note" rows="6" cols="30" value="${note}"></textarea>
+        <textarea name="note" rows="6" cols="30" value="${notes.text}"></textarea>
         <br>
         <br>
         <input type="submit" value="Save" name="save">
